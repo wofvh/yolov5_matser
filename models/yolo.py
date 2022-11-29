@@ -225,9 +225,9 @@ class DetectionModel(BaseModel):
     def _descale_pred(self, p, flips, scale, img_size):
         # de-scale predictions following augmented inference (inverse operation)
         if self.inplace:
-            p[..., :4] /= scale  # de-scale
-            if flips == 2:
-                p[..., 1] = img_size[0] - p[..., 1]  # de-flip ud
+            p[..., :4] /= scale              # de-scale  #4는 x1,y1,x2,y2
+            if flips == 2:                   #2 는 위아래 반전
+                p[..., 1] = img_size[0] - p[..., 1]  # de-flip ud 
             elif flips == 3:
                 p[..., 0] = img_size[1] - p[..., 0]  # de-flip lr
         else:

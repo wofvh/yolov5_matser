@@ -749,11 +749,11 @@ def coco80_to_coco91_class():  # converts 80-index (val2014) to 91-index (paper)
 
 def xyxy2xywh(x):
     # Convert nx4 boxes from [x1, y1, x2, y2] to [x, y, w, h] where xy1=top-left, xy2=bottom-right
-    y = x.clone() if isinstance(x, torch.Tensor) else np.copy(x)
-    y[:, 0] = (x[:, 0] + x[:, 2]) / 2  # x center
-    y[:, 1] = (x[:, 1] + x[:, 3]) / 2  # y center
-    y[:, 2] = x[:, 2] - x[:, 0]  # width
-    y[:, 3] = x[:, 3] - x[:, 1]  # height
+    y = x.clone() if isinstance(x, torch.Tensor) else np.copy(x) # y = x.copy()
+    y[:, 0] = (x[:, 0] + x[:, 2]) / 2  # x center #좌상단 x좌표와 우하단 x좌표의 평균
+    y[:, 1] = (x[:, 1] + x[:, 3]) / 2  # y center #좌상단 y좌표와 우하단 y좌표의 평균
+    y[:, 2] = x[:, 2] - x[:, 0]  # width  #우하단 x좌표에서 좌상단 x좌표를 뺀 값
+    y[:, 3] = x[:, 3] - x[:, 1]  # height #우하단 y좌표에서 좌상단 y좌표를 뺀 값
     return y
 
 
