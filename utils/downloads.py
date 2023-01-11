@@ -8,10 +8,8 @@ import os
 import subprocess
 import urllib
 from pathlib import Path
-
 import requests
 import torch
-
 
 def is_url(url, check=True):
     # Check if string is URL and check if URL exists

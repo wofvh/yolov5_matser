@@ -342,7 +342,6 @@ def check_git_status(repo='ultralytics/yolov5', branch='master'):
         s += f'up to date with {url} ✅'
     LOGGER.info(s)
 
-
 @WorkingDirectory(ROOT)
 def check_git_info(path='.'):
     # YOLOv5 git info check, return {remote, branch, commit}
